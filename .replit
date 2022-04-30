@@ -1,0 +1,4 @@
+language = "ruby"
+run = "ruby main.rb"
+
+<!-- [![Run on Repl.it](https://repl.it/badge/github/knightcapivara/mastermind)](https://repl.it/github/knightcapivara/mastermind) -->
