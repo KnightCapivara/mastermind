@@ -15,15 +15,32 @@ class Game
 
     def turn
         puts "Digite quatro números (1 a 6) para adivinhar o código"
-        loop do
-            @guess = gets.chomp
-            break if @guess.match(/[1-6][1-6][1-6][1-6]/) && @guess.length == 4
-            puts "Deve ter apenas 4 dígitos entre 1-6.".red
+
+    loop do
+        @guess = gets.chomp
+        break if @guess.match(/[1-6][1-6][1-6][1-6]/) && @guess.length == 4
+        puts "Seu palpite deve ter apenas 4 dígitos entre 1-6.".red
         end
         self.reveal(@guess.split(//))
+        puts "Descobra a lógica de comparação:"
+        self.compare(@guess.split(//))
     end
     
-
+    def compare (guess)
+        guess.each do |num|
+        print " ? ".reverse_color if @master_code.numbers.include?(num)
+        print " " if @master_code.numbers.include?(num)
+        end
+        puts ""
+        # puts "Game Clues:"
+        # print " * ".bg_black.gray
+        # print " Correct Color & Correct Spot"
+        # puts ""
+        # print " ? ".reverse_color
+        # print " Correct Color"
+        # puts ""
+    end
+    
     def reveal (array)
         array.each do | num |
             print "  #{num}  ".bg_red.bold if num == 1 || num == "1"
@@ -43,7 +60,6 @@ class Game
         self.show
         self.turn
     end
-    
 end
 
 # método: instruções
