@@ -6,11 +6,13 @@ class Game
         @options = ["1", "2", "3", "4", "5", "6"]
         puts "O computador irá escolher 4 cores/números aleatórios para fazer um código"
         self.reveal(@options)
+        puts ""
     end
 
     def show
         puts "CÓDIGO MASTER REVELADO TEMPORARIAMENTE:"
         self.reveal(@master_code.numbers)
+        puts ""
     end
 
     def turn
@@ -21,17 +23,20 @@ class Game
             puts "Seu palpite deve ter apenas 4 dígitos entre 1-6.".red
         end
         self.reveal(@guess.split(//))
-        puts "Descobra a lógica de comparação:"
+        # puts "Descobra a lógica de comparação:"
         self.compare(@guess.split(//))
     end
     
     def compare (guess)
         temp_master = []
         @master_code.numbers.each { |num| temp_master << num }
+        print " Pistas: "
         index = 0
         4.times do
           if temp_master[index] == guess[index]
             print " * ".bg_black.gray
+            # print " * ".bg_black.gray
+            print " * ".bg_gray.green
             print " "
             temp_master[index] = "X"
             guess[index]  = "X"
@@ -41,7 +46,7 @@ class Game
         i = 0
         4.times do
           if guess[i] != "X" && temp_master.include?(guess[i])
-            print " ? ".reverse_color
+            print " ? ".bg_gray.red
             print " "
             delete = temp_master.find_index(guess[i])
             temp_master[delete] = "X"
@@ -58,15 +63,16 @@ class Game
 
     def reveal (array)
         array.each do | num |
-            print "  #{num}  ".bg_red.bold if num == 1 || num == "1"
-            print "  #{num}  ".bg_green.bold if num == 2 || num == "2"
-            print "  #{num}  ".bg_blue.bold if num == 3 || num == "3"
-            print "  #{num}  ".bg_magenta.bold if num == 4 || num == "4"
-            print "  #{num}  ".bg_cyan.bold if num == 5 || num == "5"
-            print "  #{num}  ".bg_gray.bold if num == 6 || num == "6"
+            print "  #{num}  ".bg_blue if num == "1"
+            print "  #{num}  ".bg_green if num == "2"
+            print "  #{num}  ".bg_magenta if num == "3"
+            # print "  #{num}  ".bg_gray.black.bold if num == "4"
+            print "  #{num}  ".bg_cyan.black.bold if num == "4"
+            print "  #{num}  ".bg_brown.black.bold if num == "5"
+            print "  #{num}  ".bg_red.black.bold if num == "6"
             print " "
         end
-        puts ""
+        # puts ""
     end
     
 
@@ -78,10 +84,10 @@ class Game
 
 end
 
-# método: instruções
-# método: obtém suposições do código do usuário
-# método: adivinhar o código do processo
-# método: mostra código e pistas
+# metodo: instruções
+# metodo: obtém suposições do código do usuário
+# metodo: adivinhar o código do processo
+# metodo: mostra código e pistas
 
 # CODE:  3234
 # guess: 2335
