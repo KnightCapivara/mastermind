@@ -2,10 +2,10 @@ class Game
 
     def start
       puts ""
-      puts "Vamos jogar MASTERMIND"
+      puts "Vamos jogar MASTERMIND!"
       @master_code = Code.new
       @options = ["1", "2", "3", "4", "5", "6"]
-      puts "Este jogo é jogado com as seguintes combinações de números/cores:"
+      puts "Este jogo é articulado com as seis combinações de números/cores:"
       self.reveal(@options)
       puts ""
       puts ""
@@ -63,31 +63,36 @@ class Game
       temp_master = []
       @master_code.numbers.each { |num| temp_master << num }
       print "  Clues: "
+      self.exact_matches(temp_master, guess)
+      self.right_numbers(temp_master, guess)
+      puts ""
+    end
+
+    def exact_matches(master, guess)
       index = 0
       4.times do
-        if temp_master[index] == guess[index]
+        if master[index] == guess[index]
           print " * ".bg_gray.green
           print " "
-          temp_master[index] = "*"
+          master[index] = "*"
           guess[index]  = "*"
         end
         index += 1
       end
+    end
+
+    def right_numbers(master, guess)
       i = 0
       4.times do
-        if guess[i] != "*" && temp_master.include?(guess[i])
+        if guess[i] != "*" && master.include?(guess[i])
           print " ? ".bg_gray.red
           print " "
-          delete = temp_master.find_index(guess[i])
-          temp_master[delete] = "?"
+          delete = master.find_index(guess[i])
+          master[delete] = "?"
           guess[i]  = "?"
         end
         i += 1
       end
-      puts ""
-        # puts "#{guess} é o novo palpite"
-        # puts "#{temp_master} é o novo mestre temporário"
-        # puts "#{@master_code.numbers} deve ser inalterado"
     end
 
     def solved? (master, guess)
@@ -112,6 +117,7 @@ class Game
 
     def play
       self.start
+      # Revelação temporária do código mestre, para solucionar pistas
       self.show
       self.turn
     end
@@ -119,4 +125,12 @@ class Game
 end
 
 
-  # method: instruções
+# Colocar exemplos de código na mesma linha?
+# Esclareça uma pista por número
+# Onde colocar as instruções
+# Pergunta ao usuário se ele quer instruções
+# Pergunta ao usuário se ele quer um exemplo de pista
+# Coloque game.show na classe CODE
+# Coloque a lógica de 12 turnos no método de jogo
+# Limpar código para resolvido?
+# Remova a lógica do jogo final do turno
