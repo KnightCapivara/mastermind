@@ -100,8 +100,6 @@ class Game
 
 end
 
-
-
 # Coloque game.show na classe CODE
 # Coloque a lógica de 12 turnos no método de jogo
 # Limpar código para resolvido?
