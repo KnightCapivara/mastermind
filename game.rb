@@ -1,32 +1,7 @@
-class Game
+require './intro'
 
-    def start
-      puts ""
-      puts "Vamos jogar MASTERMIND!"
-      @master_code = Code.new
-      @options = ["1", "2", "3", "4", "5", "6"]
-      puts "Este jogo é articulado com as seis combinações de números/cores:"
-      self.reveal(@options)
-      puts ""
-      puts ""
-      puts "O computador escolherá aleatoriamente 4 numeros para criar um código, para você decifrar. Por exemplo,"
-      self.reveal(["5", "6", "2", "4"])
-      puts ""
-      puts ""
-      puts "Pode haver mais de um com o mesmo número/cor. Por exemplo,".red
-      self.reveal(["2", "1", "3", "2"])
-      puts ""
-      puts ""
-      puts "O computador pode lhe dar uma pista para ajudá-lo a resolver para cada, UM DE CADA!!!"
-      print " * ".bg_gray.green
-      print " "
-      puts "Esta pista significa que você tem 1 número correto no local correto."
-      puts ""
-      print " ? ".bg_gray.red
-      print " "
-      puts "Essa pista significa que você tem 1 número correto, mas está no local errado."
-      puts ""
-    end
+class Game
+  include Intro
   
     def show
       puts "CÓDIGO MASTER REVELADO TEMPORARIAMENTE:"
@@ -116,7 +91,8 @@ class Game
     end
 
     def play
-      self.start
+      self.instructions
+      @master_code = Code.new
       # Revelação temporária do código mestre, para solucionar pistas
       self.show
       self.turn
@@ -125,11 +101,7 @@ class Game
 end
 
 
-# Colocar exemplos de código na mesma linha?
-# Esclareça uma pista por número
-# Onde colocar as instruções
-# Pergunta ao usuário se ele quer instruções
-# Pergunta ao usuário se ele quer um exemplo de pista
+
 # Coloque game.show na classe CODE
 # Coloque a lógica de 12 turnos no método de jogo
 # Limpar código para resolvido?
