@@ -5,13 +5,13 @@ module Intro
       puts "Como jogar Mastermind:".underline
       puts "Existem seis combinações de número/cor diferentes:"
       puts ""
-      self.reveal(["1", "2", "3", "4", "5", "6"])
+      self.display(["1", "2", "3", "4", "5", "6"])
       puts ""
       puts ""
       puts ""
       puts "O computador escolherá aleatoriamente quatro numeros para criar um 'código mestre' para você quebrar. Por exemplo,"
       puts ""
-      self.reveal(["1", "3", "4", "1"])
+      self.display(["1", "3", "4", "1"])
       puts ""
       puts ""
       puts ""
@@ -34,7 +34,7 @@ module Intro
       puts ""
       puts "Para continuar o exemplo, usando o 'código mestre' acima, um palpite de"
       puts ""
-      self.reveal(["1", "2", "3", "4"])
+      self.display(["1", "2", "3", "4"])
       print " iria produzir 3 pistas: "
       print " * ".bg_gray.green
       print " "
@@ -46,7 +46,8 @@ module Intro
       puts ""
       puts "O palpite tinha 1 número correto no local correto e 2 números corretos no local errado."
       puts ""
-      puts "Agora é hora de jogar. O 'código mestre' foi definido e está na hora de você adivinhar."
+      puts "É hora de jogar!".underline
+      puts "O 'código mestre' foi definido e é sua vez de adivinhar o código."
       puts ""
       puts ""
     end
