@@ -1,7 +1,9 @@
-require './intro'
+# require './intro'
+# require './display'
 
 class Game
-  include Intro
+  # include Intro
+  # include Display
     
     def player_turns
       turn = 1
@@ -11,13 +13,15 @@ class Game
         turn += 1
         loop do
           @guess = gets.chomp
-          break if @guess.match(/[1-6][1-6][1-6][1-6]/) && @guess.length == 4
-          break if @guess.downcase == "q"
-          puts "Seu palpite deve ser de apenas 4 dígitos entre 1-6.".red
-        end
-        break if solved?(@master_code.numbers, @guess.split(//))
-        self.compare(@guess.split(//))
+        break if @guess.match(/[1-6][1-6][1-6][1-6]/) && @guess.length == 4
+        break if @guess.downcase == "q"
+        puts "Seu palpite deve ter apenas 4 dígitos entre 1-6.".red
       end
+      break if @guess.downcase == "q"
+      self.show(@guess.split(//))
+      break if solved?(@master_code.numbers, @guess.split(//))
+      self.compare(@guess.split(//))
+    end
     end
   
     def compare (guess)
@@ -69,13 +73,13 @@ class Game
         puts "Você perdeu. Game Over! ¯\\_(ツ)_/¯"
         puts ""
         puts "Aqui está o 'código mestre' que você estava tentando decifrar:"
-        self.display(@master_code.numbers)
+        self.show(@master_code.numbers)
         puts ""
         puts ""
       end
     end
 
-    def display (array)
+    def show (array)
       array.each do | num |
         print "  #{num}  ".bg_blue if num == "1"
         print "  #{num}  ".bg_green if num == "2"
@@ -88,26 +92,14 @@ class Game
     end
 
     def play
-      self.instructions
+      @show=Display.new("show")
+      puts @show.instructions
       @master_code = Code.new
       # puts "MASTER CODE (for trouble-shooting):"
-      # self.display(@master_code.numbers)
+      # self.show(@master_code.numbers)
       # puts ""
       self.player_turns
       self.end
-      puts colorify_white("1")
-      puts colorify_white("2")
-      puts colorify_white("3")
-      puts colorify_white("4")
-      puts colorify_white("5")
-      puts colorify_white("6")
-  
-      puts colorify_black("1")
-      puts colorify_black("2")
-      puts colorify_black("3")
-      puts colorify_black("4")
-      puts colorify_black("5")
-      puts colorify_black("6")
     end
 
 end
