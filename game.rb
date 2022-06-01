@@ -8,17 +8,19 @@ class Game
     def player_turns
       turn = 1
       while turn <= 12 do
-        puts "Turno ##{turn}: Digite quatro números (1-6) para adivinhar o código, ou 'q' para sair do jogo"
-        puts "Escolha com cuidado. Este é o seu última chance para ganhar!".red if turn == 12
+        puts @show.content(turn, "turn_prompt")
+        puts @show.content("last_turn") if turn == 12
         turn += 1
         loop do
           @guess = gets.chomp
         break if @guess.match(/[1-6][1-6][1-6][1-6]/) && @guess.length == 4
         break if @guess.downcase == "q"
-        puts "Seu palpite deve ter apenas 4 dígitos entre 1-6.".red
+        puts @show.content("turn_error")
       end
       break if @guess.downcase == "q"
-      self.show(@guess.split(//))
+      # EDITA!!!
+      self.reveal(@guess.split(//))
+      # self.reveal
       break if solved?(@master_code.numbers, @guess.split(//))
       self.compare(@guess.split(//))
     end
@@ -27,7 +29,7 @@ class Game
     def compare (guess)
       temp_master = []
       @master_code.numbers.each { |num| temp_master << num }
-      print "  Clues: "
+      print @show.content("clues")
       self.exact_matches(temp_master, guess)
       self.right_numbers(temp_master, guess)
       puts ""
@@ -67,34 +69,28 @@ class Game
 
     def end
       if solved?(@master_code.numbers, @guess.split(//))
-        puts " Você quebrou o codigo! Meus parabens, você ganhou!!"
+        puts @show.content("won")
         puts ""
       else
-        puts "Você perdeu. Game Over! ¯\\_(ツ)_/¯"
-        puts ""
-        puts "Aqui está o 'código mestre' que você estava tentando decifrar:"
-        self.show(@master_code.numbers)
+        puts @show.content("lost")
+        puts @show.content("reveal_code")
+        self.reveal(@master_code.numbers)
         puts ""
         puts ""
       end
     end
 
-    def show (array)
+    def reveal (array)
       array.each do | num |
-        print "  #{num}  ".bg_blue if num == "1"
-        print "  #{num}  ".bg_green if num == "2"
-        print "  #{num}  ".bg_magenta if num == "3"
-        print "  #{num}  ".bg_cyan.black.bold if num == "4"
-        print "  #{num}  ".bg_brown.black.bold if num == "5"
-        print "  #{num}  ".bg_red.black.bold if num == "6"
+        @show.color_code (num)
         print " "
       end
     end
 
     def play
       @show=Display.new("show")
-      puts @show.instructions
       @master_code = Code.new
+      puts @show.instructions
       # puts "MASTER CODE (for trouble-shooting):"
       # self.show(@master_code.numbers)
       # puts ""

@@ -6,16 +6,28 @@ class Display
   
     def color_code (number)
       @code_backgrounds = {
-        "1" => "44",
-        "2" => "42",
-        "3" => "45",
-        "4" => "30;1m\e[46",
-        "5" => "30;1m\e[43",
-        "6" => "30;1m\e[41"
+        "1" => "\e[44m  1  \e[0m",
+        "2" => "\e[42m  2  \e[0m",
+        "3" => "\e[45m  3  \e[0m",
+        "4" => "\e[30;1m\e[46m  4  \e[0m",
+        "5" => "\e[30;1m\e[43m  5  \e[0m",
+        "6" => "\e[30;1m\e[41m  6  \e[0m"
       }
-      return "\e[#{@code_backgrounds[number]}m  #{number}  \e[0m"
+      @code_backgrounds[number]
   
     end
+
+      # def color_code (number)
+  #   @code_backgrounds = {
+  #     "1" => "44"\e[m  1  \e[0m",
+  #     "2" => "42",
+  #     "3" => "45",
+  #     "4" => "30;1m\e[46",
+  #     "5" => "30;1m\e[43",
+  #     "6" => "30;1m\e[41"
+  #   }
+  #   return "\e[#{@code_backgrounds[number]}m  #{number}  \e[0m"
+  # end
   
     def color_clue (item)
       @clue_backgrounds = {
@@ -36,10 +48,7 @@ class Display
     end
   
     def instructions
-      @instructions_text
-    end
-  
-    def content
+
       @instructions_text = <<~HEREDOC
       #{formatting("underline", "Como jogar Mastermind::")}
       Existem seis combinações de número/cor diferentes:
@@ -74,6 +83,20 @@ class Display
       O 'código mestre' foi definido e é sua vez de adivinhar o código.
       
       HEREDOC
+      @instructions_text
+    end
+  
+    def content (number = nil, item)
+      @prompts = {
+        "turn_prompt" => "Turno ##{number}: Digite quatro números (1-6) para adivinhar o código ou 'q' para sair do jogo.",
+        "last_turn" => "#{formatting("red", "Escolha com cuidado. Essa é a sua última chance de ganhar!")}",
+        "turn_error" => "#{formatting("red", "Seu palpite deve ter apenas 4 dígitos entre 1-6.")}",
+        "clues" => "  Pistas: ",
+        "won" => "  Você quebrou o código! Parabéns, você venceu! \n\n",
+        "lost" => "#{formatting("red", "Game over. ¯\\_(ツ)_/¯ ")} \n\n",
+        "reveal_code" => "Aqui está o 'código mestre' que você estava tentando decifrar:"
+      }
+      @prompts[item]
     end
   
   end
