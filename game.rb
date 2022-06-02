@@ -81,6 +81,7 @@ class Game
     end
 
     def reveal (array)
+      
       array.each do | num |
         @show.color_code (num)
         print " "
