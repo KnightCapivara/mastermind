@@ -39,7 +39,7 @@ class Game
       index = 0
       4.times do
         if master[index] == guess[index]
-          print " * ".bg_gray.green
+          print @show.color_clue ("*")
           print " "
           master[index] = "*"
           guess[index]  = "*"
@@ -52,7 +52,7 @@ class Game
       i = 0
       4.times do
         if guess[i] != "*" && master.include?(guess[i])
-          print " ? ".bg_gray.red
+          print @show.color_clue ("?")
           print " "
           remove = master.find_index(guess[i])
           master[remove] = "?"
