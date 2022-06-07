@@ -94,7 +94,6 @@ class Game
       puts @show.instructions
       # puts "MASTER CODE (for trouble-shooting):"
       # self.show(@master_code.numbers)
-      # puts ""
       self.player_turns
       self.end
     end
