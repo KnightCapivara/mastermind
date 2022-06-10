@@ -1,9 +1,4 @@
-# require './intro'
-# require './display'
-
 class Game
-  # include Intro
-  # include Display
     
     def player_turns
       turn = 1
@@ -18,9 +13,7 @@ class Game
         puts @show.content("turn_error")
       end
       break if @guess.downcase == "q"
-      # EDITA!!!
       self.reveal(@guess.split(//))
-      # self.reveal
       break if solved?(@master_code.numbers, @guess.split(//))
       self.compare(@guess.split(//))
     end
@@ -92,8 +85,6 @@ class Game
       @show=Display.new("show")
       @master_code = Code.new
       puts @show.instructions
-      # puts "MASTER CODE (for trouble-shooting):"
-      # self.show(@master_code.numbers)
       self.player_turns
       self.end
     end
