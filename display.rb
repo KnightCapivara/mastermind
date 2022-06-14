@@ -48,12 +48,12 @@ class Display
       #{color_code("1")} #{color_code("2")} #{color_code("3")} #{color_code("4")} #{color_code("5")} #{color_code("6")}
       
       
-      O computador escolherá aleatoriamente quatro numeros para criar um 'código mestre' para você quebrar. Por exemplo,
+      O criador de código escolherá quatro para criar um 'código mestre'. Por exemplo,
       
       #{color_code("1")} #{color_code("3")} #{color_code("4")} #{color_code("1")}
       
       Como você pode ver, pode haver #{formatting("red", "mais de um")} com o mesmo número/cor.
-      Para ganhar, você deve adivinhar o 'código mestre' em 12 ou menos turnos.
+      Para ganhar, o decifrador de código precisa adivinhar o 'código mestre' em 12 ou menos turnos.
       
       #{formatting("underline", "Pistas:")}
       Depois de cada palpite, você receberá até quatro pistas para ajudá-lo a decifrar o código.
@@ -72,7 +72,10 @@ class Display
       O palpite tinha 1 número correto no local correto e 2 números corretos no local errado.
       
       #{formatting("underline", "É hora de jogar!")}
-      O 'código mestre' foi definido e é sua vez de adivinhar o código.
+      Você gostaria de ser o Criador ou o Codificador?
+
+      Pressione '1' para ser o código MAKER/Criador
+      Pressione '2' para ser o código BREAKER/Codificador
       
       HEREDOC
       @instructions_text
