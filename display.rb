@@ -40,6 +40,9 @@ class Display
 
       @instructions_text = <<~HEREDOC
       #{formatting("underline", "Como jogar Mastermind::")}
+
+      Este é um jogo de 1 jogador contra o computador. 
+      Você pode optar por ser o código #{formatting("underline", "maker")} ou o código #{formatting("underline", "breaker")}.
       Existem seis combinações de número/cor diferentes:
       
       #{color_code("1")} #{color_code("2")} #{color_code("3")} #{color_code("4")} #{color_code("5")} #{color_code("6")}
