@@ -14,12 +14,12 @@ class Game
       break if @guess.downcase == "q"
       reveal(@guess.split(//))
       break if solved?(@master_code.numbers, @guess.split(//))
-      compare(@guess.split(//))
+      compare(@master_code.numbers, @guess.split(//))
     end
   end
-  def compare (guess)
+  def compare (master, guess)
     temp_master = []
-    @master_code.numbers.each { |num| temp_master << num }
+    master.each { |num| temp_master << num }
     print @show.content("clues")
     @exact_number = exact_matches(temp_master, guess)
     @same_number = right_numbers(temp_master, guess)
@@ -74,7 +74,6 @@ class Game
   end
   def play
     @show = Display.new("show")
-    @master_code = Code.new
     puts @show.instructions
     player_turns
     game_over
