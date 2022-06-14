@@ -89,7 +89,13 @@ class Display
         "clues" => "  Pistas: ",
         "won" => "  Você quebrou o código! Parabéns, você venceu! \n\n",
         "lost" => "#{formatting("red", "Game over. ¯\\_(ツ)_/¯ ")} \n\n",
-        "reveal_code" => "Aqui está o 'código mestre' que você estava tentando decifrar:"
+        "reveal_code" => "Aqui está o 'código mestre' que você estava tentando decifrar:",
+        "end" => "\n\n\nVocê quer jogar de novo? Pressione 's' para sim ou 'n' para não.",
+        "answer_error" => "#{formatting("red", "Digite '1' para ser o código MAKER/CRIADOR ou '2' para ser o código BREAKER/CODIFICADOR.")}",
+        "breaker_start" => "O computador configurou o 'código mestre' e agora é hora de você decifrar o código.\n\n",
+        "maker_start" => "Por favor, digite um 'código mestre' de 4 dígitos para o computador quebrar.",
+        "maker_error" => "#{formatting("red", "Seu 'código mestre' deve ter 4 dígitos, usando números entre 1-6.")}",
+        "maker_code" => "é o seu 'código mestre'.\n\n"
       }
       @prompts[item]
     end
