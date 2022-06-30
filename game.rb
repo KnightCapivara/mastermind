@@ -105,7 +105,7 @@ class Game
   end
 
   def computer_turns 
-    puts "computer_turns"
+    puts "Vez do Computador"
     @computer_guess = ["1", "1", "1", "1"]
     reveal(@computer_guess)
     compare(@maker_code, @computer_guess)
