@@ -108,10 +108,30 @@ class Game
   end
 
   def computer_turns 
-    puts "Vez do Computador"
-    @computer_guess = ["1", "1", "1", "1"]
+    puts "Primeiro Turno"
+    sleep(1)
+    @number_guess = 1
+    @computer_guess = []
+    @computer_guess << @number_guess.to_s until
     reveal(@computer_guess)
     compare(@maker_code, @computer_guess)
+    until @total_number == 4 do
+      puts "Proximo Turno"
+      sleep(1)
+      @number_guess += 1
+      @computer_guess.pop(4 - @total_number)
+      @computer_guess << @number_guess.to_s until @computer_guess.length == 4
+      reveal(@computer_guess)
+      compare(@maker_code, @computer_guess)
+    end
+    until solved?(@maker_code, @computer_guess)
+      puts "Proximo Turno"
+      @computer_guess.shuffle!
+      print @computer_guess
+      puts ""
+      reveal(@computer_guess)
+      compare(@maker_code, @computer_guess)
+    end
   end
   
 end
