@@ -20,9 +20,12 @@ class Game
   def compare (master, guess)
     temp_master = []
     master.each { |num| temp_master << num }
+    temp_guess = []
+    guess.each { |num| temp_guess << num }
     print @show.content("clues")
-    @exact_number = exact_matches(temp_master, guess)
-    @same_number = right_numbers(temp_master, guess)
+    @exact_number = exact_matches(temp_master, temp_guess)
+    @same_number = right_numbers(temp_master, temp_guess)
+    @total_number = @exact_number + @same_number
     print @show.clues(@exact_number, @same_number)
   end
 
